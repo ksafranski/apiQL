@@ -33,8 +33,7 @@ The class currently supports four methods; SELECT, INSERT, UPDATE, and DELETE:
     
 'columns' and 'order' are both optional and default to '*' and 'null' respectively.
 
-*JSON Mode:*: The JSON is echo's out directly
-*Standard*: An array is returned:
+If using the 'standard' non-JSON mode an array is returned which can be acted on:
 
     ...
     $output = $apiQL->Select();
@@ -46,6 +45,30 @@ The class currently supports four methods; SELECT, INSERT, UPDATE, and DELETE:
         }
     }
     
+###2.) INSERT
 
+    $apiQL->table = "table_name";
+    $apiQL->data = array("column1"=>"value1","column2"=>"value2", ... );
+    $apiQL->Insert();
     
+Using the 'standard' non-JSON mode the ID of the inserted element is returned:
+
+    ...
+    $id = $apiQL->Insert();
     
+###3.) UPDATE
+
+    $apiQL->table = "table_name";
+    $apiQL->data = array("column"=>"value", ... );
+    $apiQL->where = "column='condition'";
+    $apiQL->Update();
+    
+The 'where' is opional. The function returns 'success' on completion.
+
+###4.) DELETE
+
+    $apiQL->table = "table_name";
+    $apiQL->where = "column='condition';
+    $apiQL->Delete();
+    
+The 'where' is optional. The function returns 'success' on completion.
