@@ -24,7 +24,7 @@ To use the class instatiate it, passing in either 'true' (JSON Output) or 'false
     
 The class currently supports four methods; SELECT, INSERT, UPDATE, and DELETE:
 
-1.  INSERT
+###1.) SELECT
 
     $apiQL->table = "table_name";
     $apiQL->columns = array("column1","column2");
