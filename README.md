@@ -9,10 +9,12 @@ Note: This class is still very much in development, use with caution.
 
 The first thing to do is to set globals for the connection:
 
+    ```php
     define("MYSQL_HOST","your_host");
     define("MYSQL_USER","username");
     define("MYSQL_PASS","password");
     define("MYSQL_BASE","database");
+    ```
     
 Next, include/require the class file:
 
