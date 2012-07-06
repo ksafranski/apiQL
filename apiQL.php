@@ -178,27 +178,37 @@ class apiQL {
         if($this->test){
             echo("<pre>".$this->query."</pre>");
         }else{
-            $result = $this->link->query($this->query);
-            switch($this->output){
-                case "select":
-                    $results = array();
-                    while($row = mysqli_fetch_assoc($result)){
-                      $results[] = $row;
-                    }
-                    $this->jdata = json_encode($results);
-                    $this->output = $results;
-                    break;
-                
-                case "id":
-                    $this->jdata = '{"id":"'.mysqli_insert_id($this->link).'"}';
-                    $this->output = mysqli_insert_id($this->link);
-                    break;
-                
-                default:
-                    $this->jdata = null;
-                    $this->output = 'success';
-                    break;
-            }              
+            // Fire off query
+            if($result = $this->link->query($this->query)){
+                switch($this->output){
+                    case "select":
+                        $results = array();
+                        while($row = mysqli_fetch_assoc($result)){
+                          $results[] = $row;
+                        }
+                        $this->jdata = json_encode($results);
+                        $this->output = $results;
+                        break;
+                    
+                    case "id":
+                        $this->jdata = '{"id":"'.mysqli_insert_id($this->link).'"}';
+                        $this->output = mysqli_insert_id($this->link);
+                        break;
+                    
+                    default:
+                        $this->jdata = null;
+                        $this->output = 'success';
+                        break;
+                }
+            // Return error
+            }else{
+                $error = "MySQL Error: " .mysqli_errno($this->link) . " : " . mysqli_error($this->link);
+                if($this->json){
+                    die('{"status":"error","message":'.json_encode($error).'}');
+                }else{
+                    die($error);
+                }
+            }
         } 
         if($this->json){
             $this->buildJSON();
