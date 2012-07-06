@@ -22,4 +22,15 @@ To use the class instatiate it, passing in either 'true' (JSON Output) or 'false
 
     $apiQL= new apiQL(true);
     
+The class currently supports four methods; SELECT, INSERT, UPDATE, and DELETE:
+
+1.  INSERT
+
+    $apiQL->table = "table_name";
+    $apiQL->columns = array("column1","column2");
+    $apiQL->order = "column1 DESC";
+    $apiQL->Select();
+    
+
+    
     
