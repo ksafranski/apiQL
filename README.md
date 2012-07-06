@@ -3,6 +3,8 @@ apiQL
 
 Simple Class for PHP MySQLi Connections with JSON Output Support.
 
+Note: This class is still very much in development, use with caution.
+
 ## Getting Started
 
 The first thing to do is to set globals for the connection:
@@ -72,3 +74,9 @@ The 'where' is opional. The function returns 'success' on completion.
     $apiQL->Delete();
     
 The 'where' is optional. The function returns 'success' on completion.
+
+## Close Connection
+
+To close the connection simply apply the following command:
+
+    $apiQL->Close();
