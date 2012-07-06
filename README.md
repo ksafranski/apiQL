@@ -1,4 +1,25 @@
 apiQL
 =====
 
-Simple Class for PHP MySQLi Connections with JSON Output Support
+Simple Class for PHP MySQLi Connections with JSON Output Support.
+
+## Getting Started
+
+The first thing to do is to set globals for the connection:
+
+    define("MYSQL_HOST","your_host");
+    define("MYSQL_USER","username");
+    define("MYSQL_PASS","password");
+    define("MYSQL_BASE","database");
+    
+Next, include/require the class file:
+
+    require_once('apiQL.php');
+    
+## Usage
+
+To use the class instatiate it, passing in either 'true' (JSON Output) or 'false' (Standard PHP access):
+
+    $apiQL= new apiQL(true);
+    
+    
