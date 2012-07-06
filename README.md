@@ -41,7 +41,7 @@ If using the 'standard' non-JSON mode an array is returned which can be acted on
     if(!$apiQL->test){
         // Loop through output
         foreach($output as $record){
-            echo($record['fname'] . ' ' . $record['lname'] . "<br />");
+            echo($record['column1'] . ' ' . $record['column2'] ... );
         }
     }
     
