@@ -35,7 +35,7 @@ The class currently supports four methods; SELECT, INSERT, UPDATE, and DELETE:
     
 'columns' and 'order' are both optional and default to '*' and 'null' respectively.
 
-If using the 'standard' non-JSON mode an array is returned which can be acted on:
+If using the non-JSON mode an array is returned which can be acted on:
 
     ...
     $output = $apiQL->Select();
@@ -47,16 +47,39 @@ If using the 'standard' non-JSON mode an array is returned which can be acted on
         }
     }
     
+When outputting JSON the following is returned:
+
+    {
+        "status": "success",
+        "data": [
+            {
+                "column1": "some_value",
+                "column2": "some_value",
+                ...
+            },
+            {
+                "column1": "some_value",
+                "column2": "some_value",
+                ...
+            },
+            ...
+        ]
+    }
+    
 ###2.) INSERT
 
     $apiQL->table = "table_name";
     $apiQL->data = array("column1"=>"value1","column2"=>"value2", ... );
     $apiQL->Insert();
     
-Using the 'standard' non-JSON mode the ID of the inserted element is returned:
+Using the non-JSON mode the ID of the inserted element is returned:
 
     ...
     $id = $apiQL->Insert();
+    
+When outputting JSON the following is returned:
+
+    {"status":"success","data":{"id":"some_value"}}
     
 ###3.) UPDATE
 
@@ -65,7 +88,7 @@ Using the 'standard' non-JSON mode the ID of the inserted element is returned:
     $apiQL->where = "column='condition'";
     $apiQL->Update();
     
-The 'where' is opional. The function returns 'success' on completion.
+The 'where' is opional. The function returns 'success' on completion either in string format (non-JSON) or in JSEND format {status:success,data:null}
 
 ###4.) DELETE
 
@@ -73,7 +96,7 @@ The 'where' is opional. The function returns 'success' on completion.
     $apiQL->where = "column='condition';
     $apiQL->Delete();
     
-The 'where' is optional. The function returns 'success' on completion.
+The 'where' is optional. The function returns 'success' on completion either in string format (non-JSON) or in JSEND format {status:success,data:null}
 
 ## Close Connection
 
