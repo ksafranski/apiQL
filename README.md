@@ -18,90 +18,121 @@ define("MYSQL_BASE","database");
     
 Next, include/require the class file:
 
-    require_once('apiQL.php');
-    
+```php
+require_once('apiQL.php');
+```
+
 ## Usage
+
 
 To use the class instatiate it, passing in either 'true' (JSON Output) or 'false' (Standard PHP access):
 
-    $apiQL= new apiQL(true);
+```php
+$apiQL= new apiQL(true);
+```
     
 The class currently supports four methods; SELECT, INSERT, UPDATE, and DELETE:
 
 ###1.) SELECT
 
-    $apiQL->table = "table_name";
-    $apiQL->columns = array("column1","column2");
-    $apiQL->order = "column1 DESC";
-    $apiQL->Select();
+```php
+$apiQL->table = "table_name";
+$apiQL->columns = array("column1","column2");
+$apiQL->order = "column1 DESC";
+$apiQL->Select();
+```
     
 'columns' and 'order' are both optional and default to '*' and 'null' respectively.
 
 If using the non-JSON mode an array is returned which can be acted on:
 
-    ...
-    $output = $apiQL->Select();
-    
-    if(!$apiQL->test){
-        // Loop through output
-        foreach($output as $record){
-            echo($record['column1'] . ' ' . $record['column2'] ... );
-        }
+```php
+...
+$output = $apiQL->Select();
+
+if(!$apiQL->test){
+    // Loop through output
+    foreach($output as $record){
+        echo($record['column1'] . ' ' . $record['column2'] ... );
     }
+}
+```
     
 When outputting JSON the following is returned:
 
-    {
-        "status": "success",
-        "data": [
-            {
-                "column1": "some_value",
-                "column2": "some_value",
-                ...
-            },
-            {
-                "column1": "some_value",
-                "column2": "some_value",
-                ...
-            },
+```javascript
+{
+    "status": "success",
+    "data": [
+        {
+            "column1": "some_value",
+            "column2": "some_value",
             ...
-        ]
-    }
+        },
+        {
+            "column1": "some_value",
+            "column2": "some_value",
+            ...
+        },
+        ...
+    ]
+}
+```
     
 ###2.) INSERT
 
-    $apiQL->table = "table_name";
-    $apiQL->data = array("column1"=>"value1","column2"=>"value2", ... );
-    $apiQL->Insert();
+```php
+$apiQL->table = "table_name";
+$apiQL->data = array("column1"=>"value1","column2"=>"value2", ... );
+$apiQL->Insert();
+```
     
 Using the non-JSON mode the ID of the inserted element is returned:
 
-    ...
-    $id = $apiQL->Insert();
+```php
+...
+$id = $apiQL->Insert();
+```
     
 When outputting JSON the following is returned:
 
-    {"status":"success","data":{"id":"some_value"}}
+```javascript
+{"status":"success","data":{"id":"some_value"}}
+```
     
 ###3.) UPDATE
 
-    $apiQL->table = "table_name";
-    $apiQL->data = array("column"=>"value", ... );
-    $apiQL->where = "column='condition'";
-    $apiQL->Update();
+```php
+$apiQL->table = "table_name";
+$apiQL->data = array("column"=>"value", ... );
+$apiQL->where = "column='condition'";
+$apiQL->Update();
+```
     
-The 'where' is opional. The function returns 'success' on completion either in string format (non-JSON) or in JSEND format {status:success,data:null}
+The 'where' is opional. The function returns 'success' on completion either in string format (non-JSON) or in JSEND format 
+
+```javascript
+{"status":"success","data":null}
+```
 
 ###4.) DELETE
 
-    $apiQL->table = "table_name";
-    $apiQL->where = "column='condition';
-    $apiQL->Delete();
+```php
+$apiQL->table = "table_name";
+$apiQL->where = "column='condition';
+$apiQL->Delete();
+```
     
-The 'where' is optional. The function returns 'success' on completion either in string format (non-JSON) or in JSEND format {status:success,data:null}
+The 'where' is optional. The function returns 'success' on completion either in string format (non-JSON) or in JSEND format 
+
+```javascript
+{"status":"success","data":null}
+```
 
 ## Close Connection
 
 To close the connection simply apply the following command:
 
-    $apiQL->Close();
+```php
+$apiQL->Close();
+```
