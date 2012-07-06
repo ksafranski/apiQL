@@ -31,6 +31,21 @@ The class currently supports four methods; SELECT, INSERT, UPDATE, and DELETE:
     $apiQL->order = "column1 DESC";
     $apiQL->Select();
     
+'columns' and 'order' are both optional and default to '*' and 'null' respectively.
+
+*JSON Mode:*: The JSON is echo's out directly
+*Standard*: An array is returned:
+
+    ...
+    $output = $apiQL->Select();
+    
+    if(!$apiQL->test){
+        // Loop through output
+        foreach($output as $record){
+            echo($record['fname'] . ' ' . $record['lname'] . "<br />");
+        }
+    }
+    
 
     
     
