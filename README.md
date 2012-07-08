@@ -3,8 +3,6 @@ apiQL
 
 Simple Class for PHP MySQLi connections with support for both 'standard' PHP database insteracion as well as JSON-formatted output.
 
-Note: This class is still very much in development, use with caution.
-
 ## Getting Started
 
 The first thing to do is to set globals for the connection:
