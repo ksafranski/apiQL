@@ -30,6 +30,14 @@ To use the class instatiate it, passing in either 'true' (JSON Output) or 'false
 ```php
 $apiQL= new apiQL(true);
 ```
+
+### Test Mode
+
+In order to allow easy troubleshooting for SQL queries the class includes a 'test' property. By setting to **true** the SQL query will simply echo out and not be executed:
+
+```php
+$apiQL->test = true;
+```
     
 The class currently supports four methods; SELECT, INSERT, UPDATE, and DELETE:
 
