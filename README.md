@@ -1,7 +1,7 @@
 apiQL
 =====
 
-Simple Class for PHP MySQLi Connections with JSON Output Support.
+Simple Class for PHP MySQLi connections with support for both 'standard' PHP database insteracion as well as JSON-formatted output.
 
 Note: This class is still very much in development, use with caution.
 
