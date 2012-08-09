@@ -38,6 +38,8 @@ class apiQL {
     public $table       = '';
     public $data        = array();
     public $columns     = '*';
+    public $distinct    = false;
+    public $limit       = "";
     public $where       = '';
     public $order       = '';
     public $query       = '';
@@ -81,8 +83,14 @@ class apiQL {
     
     public function Select(){
     
+        $distinct = "";
+        if($this->distinct){ $distinct = "DISTINCT "; }
+        
+        $limit = "";
+        if($this->limit){ $limit = " LIMIT " . $this->limit; }
+    
         if(!is_array($this->columns)){
-            $query = "SELECT " . $this->columns . " FROM " . $this->table;
+            $query = "SELECT $distinct" . $this->columns . " FROM " . $this->table;
         }else{
             $columns = "";
             $counter = 0;
@@ -91,7 +99,7 @@ class apiQL {
                 $columns .= $s.$column;
                 $counter++; 
             }
-            $query = "SELECT " . $columns . " FROM " . $this->table;
+            $query = "SELECT $distinct" . $columns . " FROM " . $this->table;
         }
         
         $where = "";
@@ -101,7 +109,7 @@ class apiQL {
         if($this->order){ $order = " ORDER BY " . $this->order; }
         
         $this->output = "select";
-        $this->query = $query . $where . $order;
+        $this->query = $query . $where . $order . $limit;
         return $this->Execute();
         
     }
