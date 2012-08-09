@@ -44,6 +44,9 @@ The class currently supports four methods; SELECT, INSERT, UPDATE, and DELETE:
 ```php
 $apiQL->table = "table_name";
 $apiQL->columns = array("column1","column2");
+$apiQL->where = "column1='something'";
+$apiQL->distinct = false;
+$apiQL->limit = 5;
 $apiQL->order = "column1 DESC";
 $apiQL->Select();
 ```
